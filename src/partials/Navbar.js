@@ -1,10 +1,36 @@
-import React from "react";
+import React, {useState} from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import logo from "../assets/logo.svg";
+import {useSelector, useDispatch} from "react-redux";
+import { addItem, deleteItem} from "../actions/cartActions.js";
+
+
+const CartIcon = () => {
+  const state = useSelector((state) => state);
+  return (
+    <div className="relative">
+      <ShoppingCartIcon fontSize="inherit" />
+      {state.numberOfItems > 0 && (
+        <span className="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 flex items-center justify-center w-5 h-5 bg-red-500 text-white text-xs rounded-full">
+          {state.numberOfItems}
+        </span>
+      )}
+    </div>
+  );
+};
 
 const Navbar = () => {
+  const dispatch = useDispatch();
+  
+  const handleAddItem = () => {
+    dispatch(addItem());
+  }
+  const handleRemoveItem = () => {
+    dispatch(deleteItem());
+  }
+
   return (
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 uppercase text-white font-bold">
       <div className="w-10  h-10 mr-6">
@@ -22,8 +48,11 @@ const Navbar = () => {
         <span className="">
           <PersonOutlineOutlinedIcon fontSize="inherit" />
         </span>
-        <span className="">
-          <ShoppingCartIcon fontSize="inherit" />
+        <span className="" onClick={handleAddItem}>
+        <CartIcon />
+        </span>
+        <span className="" onClick={handleRemoveItem}>
+        <button className="red">Cart-</button>
         </span>
       </div>
     </div>
