@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
@@ -13,7 +13,7 @@ const CartIcon = () => {
     <div className="relative">
       <ShoppingCartIcon fontSize="inherit" />
       {state.numberOfItems > 0 && (
-        <span className="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 flex items-center justify-center w-5 h-5 bg-red-500 text-white text-xs rounded-full">
+        <span className="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 flex items-center justify-center w-5 h-5 bg-brightGreen text-white text-xs rounded-full">
           {state.numberOfItems}
         </span>
       )}
